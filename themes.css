@@ -1,0 +1,126 @@
+/* Sistema de Temas Modernos para Live Audio */
+
+:root {
+  /* Tema Oscuro (por defecto) */
+  --primary-bg: linear-gradient(135deg, #1e3c72, #2a5298);
+  --secondary-bg: rgba(255, 255, 255, 0.1);
+  --accent-color: #64b5f6;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --border-color: rgba(255, 255, 255, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --glow-color: rgba(100, 181, 246, 0.5);
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --error-color: #f44336;
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
+}
+
+/* Tema Claro */
+[data-theme="light"] {
+  --primary-bg: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  --secondary-bg: rgba(0, 0, 0, 0.05);
+  --accent-color: #2196f3;
+  --text-primary: #212121;
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  --border-color: rgba(0, 0, 0, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.15);
+  --glow-color: rgba(33, 150, 243, 0.3);
+}
+
+/* Tema Neón */
+[data-theme="neon"] {
+  --primary-bg: linear-gradient(135deg, #0a0a0a, #1a1a2e);
+  --secondary-bg: rgba(255, 0, 255, 0.1);
+  --accent-color: #ff00ff;
+  --text-primary: #00ffff;
+  --text-secondary: rgba(0, 255, 255, 0.7);
+  --border-color: rgba(255, 0, 255, 0.3);
+  --shadow-color: rgba(255, 0, 255, 0.5);
+  --glow-color: rgba(255, 0, 255, 0.8);
+}
+
+/* Tema Futurista */
+[data-theme="futuristic"] {
+  --primary-bg: linear-gradient(135deg, #000428, #004e92);
+  --secondary-bg: rgba(0, 255, 255, 0.1);
+  --accent-color: #00ffff;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(0, 255, 255, 0.8);
+  --border-color: rgba(0, 255, 255, 0.3);
+  --shadow-color: rgba(0, 255, 255, 0.4);
+  --glow-color: rgba(0, 255, 255, 0.6);
+}
+
+/* Animaciones y efectos */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px var(--glow-color); }
+  50% { box-shadow: 0 0 20px var(--glow-color), 0 0 30px var(--glow-color); }
+  100% { box-shadow: 0 0 5px var(--glow-color); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Clases de utilidad */
+.glass-effect {
+  background: var(--secondary-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 32px var(--shadow-color);
+}
+
+.glow-effect {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.pulse-effect {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.float-effect {
+  animation: float 3s ease-in-out infinite;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  :root {
+    --border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --border-radius: 6px;
+  }
+}

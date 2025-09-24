@@ -1,10 +1,188 @@
+/* Variables CSS globales */
+:root {
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --primary-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --accent-color: #64b5f6;
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --error-color: #f44336;
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Estilos base */
+* {
+  box-sizing: border-box;
+}
+
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
   margin: 0;
   padding: 0;
+  font-family: var(--font-family);
+  background: var(--primary-bg);
   min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: var(--text-primary);
+}
+
+/* Contenedor principal */
+#app-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Componente principal */
+gdm-live-audio {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Animaciones globales */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(100, 181, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(100, 181, 246, 0.8);
+  }
+}
+
+/* Utilidades de animación */
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.slide-in {
+  animation: slideIn 0.6s ease-out;
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+.glow {
+  animation: glow 2s infinite;
+}
+
+/* Efectos de vidrio */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow);
+}
+
+.glass:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
+  #app-container {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+  }
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Soporte para temas */
+[data-theme="dark"] {
+  --primary-bg: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  --glass-bg: rgba(0, 0, 0, 0.3);
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+}
+
+[data-theme="neon"] {
+  --primary-bg: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+  --glass-bg: rgba(0, 255, 255, 0.1);
+  --text-primary: #00ffff;
+  --text-secondary: #ff00ff;
+  --accent-color: #00ff00;
+}
+
+[data-theme="light"] {
+  --primary-bg: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --text-primary: #333333;
+  --text-secondary: #666666;
+}
+
+[data-theme="futuristic"] {
+  --primary-bg: linear-gradient(135deg, #000428 0%, #004e92 100%);
+  --glass-bg: rgba(0, 100, 255, 0.2);
+  --text-primary: #00d4ff;
+  --text-secondary: #0099cc;
+  --accent-color: #0066ff;
 }

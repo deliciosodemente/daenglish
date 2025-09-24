@@ -62,12 +62,58 @@ export class GdmLiveAudioVisuals3D extends LitElement {
   private canvas!: HTMLCanvasElement;
 
   static styles = css`
+    :host {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--glass-bg, rgba(255, 255, 255, 0.05));
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow, 0 8px 32px rgba(0, 0, 0, 0.3));
+    }
+    
     canvas {
       width: 100% !important;
       height: 100% !important;
       position: absolute;
       inset: 0;
       image-rendering: pixelated;
+      border-radius: 16px;
+    }
+    
+    .loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      font-size: 1.2rem;
+      z-index: 10;
+      border-radius: 16px;
+      backdrop-filter: blur(5px);
+    }
+    
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top: 4px solid var(--accent-color, #64b5f6);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 1rem;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   `;
 
@@ -189,6 +235,10 @@ export class GdmLiveAudioVisuals3D extends LitElement {
   private animation() {
     requestAnimationFrame(() => this.animation());
 
+    if (!this.inputAnalyser || !this.outputAnalyser || !this.composer) {
+      return;
+    }
+
     this.inputAnalyser.update();
     this.outputAnalyser.update();
 
@@ -247,7 +297,15 @@ export class GdmLiveAudioVisuals3D extends LitElement {
   }
 
   protected render() {
-    return html`<canvas></canvas>`;
+    return html`
+      <canvas></canvas>
+      ${!this.sphere?.visible ? html`
+        <div class="loading-overlay">
+          <div class="loading-spinner"></div>
+          Loading 3D Environment...
+        </div>
+      ` : ''}
+    `;
   }
 }
 
