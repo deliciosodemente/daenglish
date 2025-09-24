@@ -1,0 +1,16 @@
+{
+  "name": "live-audio",
+  "main": "src/index.ts",
+  "compatibility_date": "2024-01-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "APP_VERSION": "0.0.1"
+  },
+  "assets": {
+    "directory": "dist",
+    "binding": "ASSETS"
+  },
+  "ai": {
+    "binding": "AI"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "live-audio",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "vite preview --host 0.0.0.0 --port 3000",
+    "deploy": "wrangler deploy",
+    "dev:worker": "wrangler dev",
+    "build:worker": "wrangler deploy --dry-run"
+  },
+  "dependencies": {
+    "@google/genai": "^1.15.0",
+    "@lit/context": "^1.1.5",
+    "lit": "^3.3.0",
+    "three": "^0.176.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0",
+    "wrangler": "^4.39.0"
+  }
+}
