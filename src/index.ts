@@ -3,10 +3,20 @@
  * Serves the static assets and handles API requests
  */
 
+interface Fetcher {
+  fetch(request: Request): Promise<Response>;
+}
+
+interface ExecutionContext {
+  waitUntil(promise: Promise<any>): void;
+  passThroughOnException(): void;
+}
+
 export interface Env {
   AI: any;
   ASSETS: Fetcher;
   GEMINI_API_KEY: string;
+  APP_VERSION?: string;
 }
 
 export default {
